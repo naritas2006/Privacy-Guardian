@@ -2,6 +2,8 @@
 // Detects and monitors third-party requests on websites
 
 // Store for tracking data
+// Global tracker counts per tab
+let trackerCounts = {};
 let trackingData = {};
 
 // Load tracker definitions from EasyPrivacy list (simplified version)
@@ -74,6 +76,7 @@ function isThirdParty(details) {
 }
 
 // Process a web request
+// Process a web request
 function processRequest(details) {
   // Skip non-third-party requests
   if (!isThirdParty(details)) return;
@@ -82,8 +85,11 @@ function processRequest(details) {
   const targetDomain = extractDomain(details.url);
   const trackerInfo = isKnownTracker(targetDomain);
   
-  // Skip if not a known tracker
-  if (!trackerInfo) return;
+  // Skip if not a known tracker or invalid tabId
+  if (!trackerInfo || tabId < 0) return;
+  
+  // Add console logging for tracker detection
+  console.log(`Privacy Guardian: Tracker found -> ${targetDomain} (${trackerInfo.name}, ${trackerInfo.category})`);
   
   // Initialize tracking data for this tab if needed
   if (!trackingData[tabId]) {
@@ -113,18 +119,37 @@ function processRequest(details) {
     trackingData[tabId].trackers[targetDomain].urls.push(details.url);
   }
   
-  // Update badge with tracker count
-  updateBadge(tabId);
+  // Update tracker count using the new function
+  updateTrackerCount(tabId, targetDomain);
   
   // Save data to storage
   saveTrackingData(tabId);
 }
 
 // Update the extension badge with tracker count
-function updateBadge(tabId) {
-  if (!trackingData[tabId]) return;
+function updateTrackerCount(tabId, trackerDomain) {
+  // Validate tabId - skip invalid tab IDs
+  if (tabId < 0) return;
   
-  const trackerCount = Object.keys(trackingData[tabId].trackers).length;
+  if (!trackerCounts[tabId]) {
+    trackerCounts[tabId] = new Set();
+  }
+  trackerCounts[tabId].add(trackerDomain);
+  const count = trackerCounts[tabId].size;
+  updateBadge(tabId, count);
+}
+
+// Update the extension badge with tracker count
+function updateBadge(tabId, count) {
+  // Validate tabId - Chrome extension APIs require tabId >= 0
+  if (tabId < 0) {
+    console.log(`Privacy Guardian: Skipping badge update for invalid tabId: ${tabId}`);
+    return;
+  }
+  
+  // Use provided count or fallback to trackingData
+  const trackerCount = count !== undefined ? count : 
+    (trackingData[tabId] ? Object.keys(trackingData[tabId].trackers).length : 0);
   
   chrome.action.setBadgeText({
     text: trackerCount > 0 ? trackerCount.toString() : '',
@@ -135,6 +160,8 @@ function updateBadge(tabId) {
     color: trackerCount > 10 ? '#E53935' : trackerCount > 5 ? '#FB8C00' : '#43A047',
     tabId: tabId
   });
+  
+  console.log(`Privacy Guardian: Updated badge for tab ${tabId} - ${trackerCount} trackers`);
 }
 
 // Save tracking data to storage
@@ -171,10 +198,9 @@ function handleTabUpdate(tabId, changeInfo, tab) {
 
 // Clean up when a tab is closed
 function handleTabRemove(tabId) {
-  if (trackingData[tabId]) {
-    delete trackingData[tabId];
-    chrome.storage.local.remove([`tab_${tabId}`]);
-  }
+  delete trackingData[tabId];
+  delete trackerCounts[tabId]; // Clean up tracker counts too
+  console.log(`Privacy Guardian: Cleaned up data for closed tab ${tabId}`);
 }
 
 // Set up listeners
