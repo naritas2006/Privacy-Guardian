@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "|google-analytics.com|doubleclick.net|facebook.net|facebook.com|googlesyndication.com|googletagmanager.com|hotjar.com|amazon-adsystem.com|scorecardresearch.com|twitter.com|adnxs.com|criteo.com|rubiconproject.com|optimizely.com|chartbeat.com|mixpanel.com|quantserve.com|outbrain.com|taboola.com|",
+      "resourceTypes": ["script", "image", "xmlhttprequest", "sub_frame", "stylesheet", "font", "object"]
+    }
+  }
+]

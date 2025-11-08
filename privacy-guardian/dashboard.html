@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Guardian Dashboard</title>
+
+  <!-- Font Awesome CDN for icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-..."
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <!-- Your custom CSS -->
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <header>
+    <h1><i class="fas fa-user-shield"></i> Privacy Guardian Dashboard</h1>
+    <div class="header-controls">
+      <button id="dark-mode-toggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
+      <button id="refresh-btn" title="Refresh Dashboard"><i class="fas fa-sync-alt"></i> Refresh</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="tracker-history" aria-labelledby="tracker-history-heading">
+      <h2 id="tracker-history-heading"><i class="fas fa-history"></i> Tracker History</h2>
+      <div class="tracker-legend">
+        <span class="legend-item"><span class="tracker-badge Advertising"></span> Advertising</span>
+        <span class="legend-item"><span class="tracker-badge Analytics"></span> Analytics</span>
+        <span class="legend-item"><span class="tracker-badge Fingerprinting"></span> Fingerprinting</span>
+        <span class="legend-item"><span class="tracker-badge"></span> Other</span>
+      </div>
+      <div class="history-controls">
+        <button id="sort-score-btn" title="Sort by Privacy Score"><i class="fas fa-sort-numeric-down"></i> Sort by Score</button>
+        <button id="filter-heavy-btn" title="Show Only Heavy Tracking Sites"><i class="fas fa-filter"></i> Heavy Only</button>
+      </div>
+      <div id="history-list"></div>
+    </section>
+
+    <section id="privacy-score" aria-labelledby="privacy-score-heading">
+      <h2 id="privacy-score-heading"><i class="fas fa-shield-alt"></i> Privacy Score</h2>
+      <div id="score-visual"></div>
+      <div id="score-chart"></div>
+    </section>
+
+    <section id="daily-summary" aria-labelledby="daily-summary-heading">
+      <h2 id="daily-summary-heading"><i class="fas fa-calendar-day"></i> Daily Summary</h2>
+      <div id="summary-info"></div>
+    </section>
+
+    <section id="privacy-tip" aria-labelledby="privacy-tip-heading">
+      <h2 id="privacy-tip-heading"><i class="fas fa-lightbulb"></i> Did You Know?</h2>
+      <div id="tip-content"></div>
+    </section>
+
+    <section id="recommendations" aria-labelledby="recommendations-heading">
+      <h2 id="recommendations-heading"><i class="fas fa-thumbs-up"></i> Safer Alternatives</h2>
+      <div id="recommendation-list"></div>
+      <div class="recommendation-links">
+        <a href="https://www.privacytools.io/" target="_blank"><i class="fas fa-external-link-alt"></i> Privacy Tools</a>
+        <a href="https://duckduckgo.com/" target="_blank"><i class="fas fa-external-link-alt"></i> DuckDuckGo</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Your custom JS -->
+  <script src="dashboard.js"></script>
+</body>
+</html>

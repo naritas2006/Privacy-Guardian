@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Guardian</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Privacy Guardian</h1>
+      <p class="tagline">100% Local Privacy Monitoring</p>
+    </header>
+
+    <div class="summary-section">
+      <div class="tracker-count">
+        <span id="tracker-count">0</span>
+        <span class="label">Trackers Detected</span>
+      </div>
+      <div class="site-info">
+        <div id="site-domain">Unknown</div>
+        <div id="site-status" class="status-unknown">Analyzing...</div>
+      </div>
+    </div>
+
+    <div class="trackers-section">
+      <h2>Detected Trackers</h2>
+      <div id="trackers-list" class="trackers-list">
+        <div class="no-trackers-message">No trackers detected on this site yet.</div>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="toggle-container">
+        <label class="toggle-label">Block trackers on this site</label>
+        <label class="switch">
+          <input type="checkbox" id="block-toggle">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+
+    <footer>
+      <p class="privacy-note">✓ No data leaves your browser</p>
+      <p class="version">Privacy Guardian v1.0.0</p>
+      <button id="dashboard-btn">Open Dashboard</button>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
