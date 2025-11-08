@@ -1,1 +1,5 @@
-{"devDependencies":{"jest":"^30.2.0","@stryker-mutator/core":"^6.3.1","@stryker-mutator/jest-runner":"^6.3.1"},"scripts":{"test":"jest --config privacy-guardian/jest.config.json","coverage":"jest --config privacy-guardian/jest.config.json --coverage","mutation":"npx --yes stryker run","prebuild":"powershell -NoProfile -Command \"if (!(Test-Path dist)) { New-Item -ItemType Directory -Path dist }\"","build":"powershell -NoProfile -Command \"Compress-Archive -Path privacy-guardian\\* -DestinationPath dist\\privacy-guardian.zip -Force\""}}
+{
+  "devDependencies": {
+    "jest": "^30.2.0"
+  }
+}

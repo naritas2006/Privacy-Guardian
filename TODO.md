@@ -1,0 +1,13 @@
+- [x] Update background.js to maintain 'dailyHeavySites' storage for unique heavy-tracking sites (privacy score < 50) per day
+- [x] Update dashboard.js to calculate summary count from 'dailyHeavySites' instead of 'dailySummary'
+- [x] Add progress bar for privacy score in dashboard.js and CSS
+- [x] Enhance daily summary with icons and badges
+- [x] Add tooltips for tracker badges
+- [x] Improve empty states for sections
+- [x] Add refresh button to dashboard
+- [x] Improve color coding for privacy scores
+- [x] Add chart for privacy score trends
+- [x] Add sorting/filtering buttons for tracker history
+- [x] Make site cards expandable for details
+- [x] Add dark mode toggle
+- [x] Enhance recommendations with clickable links
