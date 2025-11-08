@@ -1,0 +1,21 @@
+{
+  "$schema": "https://raw.githubusercontent.com/stryker-mutator/stryker/master/packages/core/schema/stryker-schema.json",
+  "mutate": [
+    "privacy-guardian/background.js",
+    "privacy-guardian/content.js",
+    "privacy-guardian/dashboard.js",
+    "privacy-guardian/popup.js",
+    "privacy-guardian/utils/**/*.js"
+  ],
+  "testRunner": "command",
+  "commandRunner": {
+    "command": "npx jest --runInBand"
+  },
+  "coverageAnalysis": "off",
+  "reporters": ["html", "progress", "clear-text"],
+  "concurrency": 4,
+  "timeoutMS": 10000,
+  "ignoreMutations": [
+    "BooleanLiteral"
+  ]
+}

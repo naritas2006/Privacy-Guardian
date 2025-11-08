@@ -1,0 +1,6 @@
+node_modules/
+privacy-guardian/coverage/
+dist/
+.stryker-tmp/
+privacy-guardian/tests/__snapshots__/
+privacy-guardian/__snapshots__/
